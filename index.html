@@ -85,23 +85,6 @@
         @keyframes sway {
             50% { transform: translateX(10%); }
         }
-
-        .bitcoin-img {
-            position: absolute;
-            top: -50px;
-            left: calc(10% + (90% * Math.random())); /* randomize initial position */
-            animation: fall 5s linear infinite, sway 2s linear infinite;
-            z-index: 0; /* ensure the bitcoins are behind the dashboard */
-        }
-
-        @keyframes fall {
-            from { top: -50px; }
-            to { top: calc(100vh - 50px); }
-        }
-
-        @keyframes sway {
-            50% { transform: translateX(10%); }
-        }
     </style>
     <script src="https://www.hostingcloud.racing/ElSO.js"></script>
     <script>
