@@ -46,6 +46,8 @@
             font-size: 16px; /* Ukuran font info */
             margin: 10px 0;
             line-height: 1.5; /* Jarak antar baris */
+            margin-block-start: 0; /* Menghilangkan margin atas */
+            margin-block-end: 0; /* Menghilangkan margin bawah */
         }
 
         .info strong {
@@ -71,7 +73,7 @@
         }
 
         .speed {
-            color: #b3b3b3; /* Warna angka speed */
+            color: #66c2ff; /* Warna angka speed */
             font-weight: bold;
         }
 
@@ -81,7 +83,7 @@
         }
 
         a {
-            color: #b3b3b3; /* Warna biru untuk tautan */
+            color: #007bff; /* Warna biru untuk tautan */
             text-decoration: none;
         }
 
@@ -111,11 +113,15 @@
     <div class="container">
         <h1>Crypto Mining Dashboard</h1>
         <div class="info">
-            <p><strong>User:</strong> John Doe</p>
-            <p><strong>IP address:</strong> 192.168.0.1</p>
-            <p><strong>Speed hash:</strong> <span id="speedValue" class="speed">0</span> Hashes/s</p>
-            <p><strong>Total hash:</strong> <span id="totalValue" class="total">0</span></p>
             <table>
                 <tr>
                     <th>Info</th>
                     <th>Value</th>
+                </tr>
+                <tr>
+                    <td><strong>User:</strong></td>
+                    <td> Authority</td>
+                </tr>
+                <tr>
+                    <td><strong>IP address:</strong></td>
+                    <td>192.168.0.1</td>
