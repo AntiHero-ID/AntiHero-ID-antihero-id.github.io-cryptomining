@@ -71,7 +71,7 @@
         }
 
         .speed {
-            color: #66c2ff; /* Warna angka speed */
+            color: #b3b3b3; /* Warna angka speed */
             font-weight: bold;
         }
 
@@ -81,7 +81,7 @@
         }
 
         a {
-            color: #007bff; /* Warna biru untuk tautan */
+            color: #b3b3b3; /* Warna biru untuk tautan */
             text-decoration: none;
         }
 
@@ -101,8 +101,8 @@
             setInterval(function(){
                 let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
                 let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-                document.getElementById("speed").innerText = speed;
-                document.getElementById("total").innerText = total;
+                document.getElementById("speedValue").innerText = speed;
+                document.getElementById("totalValue").innerText = total;
             },500);
         });
     </script>
@@ -113,33 +113,9 @@
         <div class="info">
             <p><strong>User:</strong> John Doe</p>
             <p><strong>IP address:</strong> 192.168.0.1</p>
-            <p><strong>Speed hash:</strong> <span id="speed" class="speed">0</span> Hashes/s</p>
-            <p><strong>Total hash:</strong> <span id="total" class="total">0</span></p>
+            <p><strong>Speed hash:</strong> <span id="speedValue" class="speed">0</span> Hashes/s</p>
+            <p><strong>Total hash:</strong> <span id="totalValue" class="total">0</span></p>
             <table>
                 <tr>
                     <th>Info</th>
                     <th>Value</th>
-                </tr>
-                <tr>
-                    <td>User</td>
-                    <td>John Doe</td>
-                </tr>
-                <tr>
-                    <td>IP Address</td>
-                    <td>192.168.0.1</td>
-                </tr>
-                <tr>
-                    <td>Speed Hash</td>
-                    <td><span id="speed" class="speed">0</span> Hashes/s</td>
-                </tr>
-                <tr>
-                    <td>Total Hash</td>
-                    <td><span id="total" class="total">0</span></td>
-                </tr>
-            </table>
-            <p><em>This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.</em></p>
-        </div>
-        <p>Jika Anda ingin mulai mining, silakan klik <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">di sini</a>.</p>
-    </div>
-</body>
-</html>
