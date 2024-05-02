@@ -40,6 +40,6 @@ setTimeout(function(){
 <body>
 Kalo ada yang mau buat klik link dibawah ini
 <br>
-<a href="https://www.coinimp.com/invite/7fc231d6-5ba5-499d-a833-bc7b24ede7c5">https://www.coinimp.com/</a>
+<a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">https://www.coinimp.com/</a>
 </body>
 </html>
