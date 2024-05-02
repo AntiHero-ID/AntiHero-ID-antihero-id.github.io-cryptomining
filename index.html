@@ -45,6 +45,23 @@
             color: #007bff;
         }
 
+        .hash-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hash-table th,
+        .hash-table td {
+            padding: 8px;
+            border-bottom: 1px solid #cccccc;
+            text-align: left;
+        }
+
+        .hash-table th {
+            background-color: #f0f0f0;
+        }
+
         a {
             color: #007bff;
             text-decoration: none;
@@ -83,7 +100,8 @@
             setInterval(function(){
                 let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
                 let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-                div.innerHTML = `<p>Speed: <span class="hash-value">${speed}</span> Hashes/s<br>Total Hash: <span class="hash-value">${total}</span></p>`;
+                document.getElementById("speedValue").innerText = speed;
+                document.getElementById("totalValue").innerText = total;
             },500);
         },1000);
     </script>
@@ -94,6 +112,20 @@
         <div class="info">
             <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
             <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
+            <table class="hash-table">
+                <tr>
+                    <th>Info</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Speed hash:</td>
+                    <td><span id="speedValue" class="hash-value">0</span> Hashes/s</td>
+                </tr>
+                <tr>
+                    <td>Total hash:</td>
+                    <td><span id="totalValue" class="hash-value">0</span></td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
