@@ -10,8 +10,10 @@
             background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            overflow: hidden;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
@@ -22,8 +24,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #ffffff;
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         h1 {
@@ -70,30 +70,6 @@
         a:hover {
             text-decoration: underline;
         }
-
-        .bitcoin-img {
-            position: absolute;
-            bottom: -50px;
-            transform: translateX(-50%);
-        }
-
-        .bitcoin {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .bitcoin img {
-            position: absolute;
-            pointer-events: none;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-100px); opacity: 0; }
-            100% { transform: translateY(calc(100vh + 50px)); opacity: 1; }
-        }
     </style>
     <script src="https://www.hostingcloud.racing/ElSO.js"></script>
     <script>
@@ -133,32 +109,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Crypto Mining Dashboard</h1>
+        <h1>Crypto Mining</h1>
         <div class="info">
             <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
             <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
             <table class="hash-table">
                 <tr>
-                    <th>Info</th>
-                    <th>Value</th>
+                    <th colspan="2">Mining Stats</th>
                 </tr>
                 <tr>
-                    <td>Speed hash:</td>
-                    <td><span id="speedValue" class="hash-value">0</span> Hashes/s</td>
+                    <td>Speed :</td>
+                    <td><span id="speedValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Total hash:</td>
+                    <td>Total :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
             </table>
         </div>
-    </div>
-    <div class="bitcoin">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="bitcoin-img" style="left: 10%;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="bitcoin-img" style="left: 30%;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="bitcoin-img" style="left: 50%;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="bitcoin-img" style="left: 70%;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin" class="bitcoin-img" style="left: 90%;">
     </div>
 </body>
 </html>
