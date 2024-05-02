@@ -7,83 +7,46 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #4c4c4c; /* Warna latar belakang */
-            color: #cccccc; /* Warna teks */
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: block;
+            display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            max-width: 600px;
+            width: 90%;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            background-color: #3d3d3d; /* Warna latar belakang kontainer */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
             text-align: center;
         }
 
         h1 {
-            color: #ffffff; /* Warna teks judul */
-            margin-bottom: 20px;
-            font-size: 25px; /* Ukuran font judul */
-            text-align: left; /* Penyesuaian untuk font di kiri */
+            color: #333333;
         }
 
         .info {
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #3d3d3d; /* Warna latar belakang info */
-            text-align: left; /* Penyesuaian untuk font di kiri */
-        }
-
-        .info p {
-            font-size: 11px; /* Ukuran font info */
-            margin: 10px 0;
-            line-height: 5; /* Jarak antar baris */
-            margin-block-start: 0; /* Menghilangkan margin atas */
-            margin-block-end: 0; /* Menghilangkan margin bawah */
-        }
-
-        .info strong {
-            font-weight: bold;
-            font-size: 18px; /* Ukuran font teks tebal */
-        }
-
-        .info table {
-            margin-top: 10px;
-            width: 100%; /* Lebar tabel 100% dari kontainer */
-            border-collapse: collapse;
-        }
-
-        .info th, .info td {
-            padding: 8px;
-            border-bottom: 1px solid #cccccc; /* Garis bawah untuk setiap baris */
-        }
-
-        .info th {
-            background-color: #333333; /* Warna latar belakang header */
-            color: #ffffff; /* Warna teks header */
+            margin-top: 20px;
             text-align: left;
         }
 
-        .speed {
-            color: #b3b3b3; /* Warna angka speed */
-            font-weight: bold;
+        .info p {
+            margin-bottom: 10px;
         }
 
-        .total {
-            color: #b3b3b3; /* Warna angka total */
+        .hash-value {
+            font-size: 20px;
             font-weight: bold;
+            color: #007bff;
         }
 
         a {
-            color: #b3b3b3; /* Warna biru untuk tautan */
+            color: #007bff;
             text-decoration: none;
         }
 
@@ -99,31 +62,38 @@
         _client.start();
         _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
 
-        document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function(){
+            if(typeof _client === 'undefined' || _client === null)
+            {
+                var messageDiv = document.createElement("div");
+                messageDiv.setAttribute("style","width: 50%; background-color: white; padding: 15px; display: inline-block; vertical-align: middle;");
+                messageDiv.appendChild(document.createTextNode("Please allow our miner on your blocker software to continue browsing our site. Reload the page after that."));
+                var mainDiv = document.createElement("div");
+                mainDiv.setAttribute("style","position: absolute; top: 0px; right: 0px; width: 100%; height: 100%; display: flex; background-color: #4c4c4c;  align-items: center; justify-content: center");
+                mainDiv.appendChild(messageDiv);
+                document.body.appendChild(mainDiv);
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                window.scrollTo(0, 0);
+            }
+        },1000);
+
+        setTimeout(function(){
+            let div = document.createElement("div");
+            document.body.appendChild(div);
             setInterval(function(){
                 let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
                 let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-                document.getElementById("speedValue").innerText = speed;
-                document.getElementById("totalValue").innerText = total;
+                div.innerHTML = `<p>Speed: <span class="hash-value">${speed}</span> Hashes/s<br>Total Hash: <span class="hash-value">${total}</span></p>`;
             },500);
-        });
+        },1000);
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Crypto Mining Dashboard</h1>
         <div class="info">
-            <table>
-                <tr>
-                    <td><strong>Speed Time:</strong></td>
-                    <td><span id="speedValue" class="speed">0</span></td>
-                </tr>
-                <tr>
-                    <td><strong>Total Hash :</strong></td>
-                    <td><span id="totalValue" class="total">0</span></td>
-                </tr>
-            </table>
-            <p>Jika Anda ingin mulai mining, silakan klik <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">https://coinimp.com/</a>.</p>
+            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
+            <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
         </div>
     </div>
 </body>
