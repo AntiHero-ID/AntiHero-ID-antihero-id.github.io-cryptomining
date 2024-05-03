@@ -129,7 +129,37 @@
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
             </table>
+            
+            <!-- Menambahkan waktu di Indonesia di bawah tabel -->
+            <div>
+                <a href="https://time.is/Indonesia" id="time_is_link" rel="nofollow" style="font-size:36px"></a>
+                <span id="Indonesia_z41c" style="font-size:36px"></span>
+                <script src="//widget.time.is/id.js"></script>
+                <script>
+                    time_is_widget.init({Indonesia_z41c:{template:"TIME<br>DATE", date_format:"dayname, dnum monthname year, week"}});
+                </script>
+            </div>
+
+            <!-- Menambahkan IP Address dan Perangkat HP yang digunakan -->
+            <div>
+                <p>IP Address : <span id="ipAddress"></span></p>
+                <p>Device HP : <span id="deviceInfo"></span></p>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Mendapatkan IP address
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ipAddress').textContent = data.ip;
+            })
+            .catch(error => console.error('Error fetching IP address:', error));
+
+        // Mendapatkan informasi perangkat
+        var deviceInfo = navigator.userAgent;
+        document.getElementById('deviceInfo').textContent = deviceInfo;
+    </script>
 </body>
 </html>
