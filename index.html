@@ -41,6 +41,7 @@
 
         .hash-value {
             font-size: 20px;
+            font-weight: bold;
             color: #007bff;
         }
 
@@ -110,7 +111,7 @@
     <div class="container">
         <h1>Crypto Mining</h1>
         <div class="info">
-            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">coinimp.com</a> If it bothers, you can stop it.</p>
+            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">coinimp.com</a>. If it bothers you, you can stop it.</p>
                         
             <p>Deployed by <a href="https://pages.github.com/">Github Pages</a>, a simple IMP coin miner from JavaScript code, and an <a href="https://e-wallet.com/">E-Wallet</a> that can be exchanged from IMP coins to bitcoins.</p>
             
@@ -120,26 +121,41 @@
                     <th colspan="2">Statistics</th>
                 </tr>
                 <tr>
-                    <td>Speed : </td>
-                    <td><span id="speedValue" class="hash-value">0</span></td>
+                    <td>Speed :</td>
+                    <td><span id="speedValue" class="hash-value">0</span> hashes/second</td>
                 </tr>
                 <tr>
-                    <td>Total : </td>
-                    <td><span id="totalValue" class="hash-value">0</span></td>
+                    <td>Total :</td>
+                    <td><span id="totalValue" class="hash-value">0</span> hashes</td>
                 </tr>
             </table>
-            <!-- Tabel untuk Info IP dan Device -->
             <table class="hash-table">
                 <tr>
                     <th colspan="2">Information</th>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><span id="ipAddress">0</span></td>
+                    <td><span id="ipAddress">Loading...</span></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td><span id="deviceInfo">0</span></td>
+                    <td><span id="deviceInfo">Loading...</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="startTime">Loading...</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="currentTime">Loading...</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="currentDate">Loading...</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><span id="miningTime">Loading...</span></td>
                 </tr>
             </table>
         </div>
@@ -157,6 +173,37 @@
         // Mendapatkan informasi perangkat
         var deviceInfo = navigator.userAgent;
         document.getElementById('deviceInfo').textContent = deviceInfo;
+
+        // Mendapatkan waktu mulai menambang
+        var startTime = new Date();
+
+        // Fungsi untuk mengupdate waktu dan tanggal secara real-time
+        function updateDateTime() {
+            var now = new Date();
+            var timeString = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0');
+            var dateString = now.toLocaleDateString();
+
+            document.getElementById('currentTime').textContent = timeString;
+            document.getElementById('currentDate').textContent = dateString;
+        }
+
+        // Fungsi untuk mengupdate durasi waktu menambang secara real-time
+        function updateMiningTime() {
+            var currentTime = new Date();
+            var elapsedTime = currentTime - startTime;
+            var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+            var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+            document.getElementById('miningTime').textContent = hours + " jam " + minutes + " menit " + seconds + " detik";
+        }
+
+        // Memanggil fungsi updateDateTime setiap detik
+        setInterval(updateDateTime, 1000);
+        // Memanggil fungsi updateMiningTime setiap detik
+        setInterval(updateMiningTime, 1000);
+
+        // Menampilkan waktu mulai menambang
+        document.getElementById('startTime').textContent = startTime.toLocaleString();
     </script>
 </body>
 </html>
