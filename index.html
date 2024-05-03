@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Mining CoinIMP</title>
+    <title>Crypto Mining</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,7 +36,7 @@
         }
 
         .info p {
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .hash-value {
@@ -97,27 +97,21 @@
         setTimeout(function(){
             let speedValue = document.getElementById("speedValue");
             let totalValue = document.getElementById("totalValue");
-            let pendingValue = document.getElementById("pendingValue");
 
             setInterval(function(){
                 let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
                 let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
-                let paymentPerHash = 0.0000000001; // Pendapatan per hash, ganti sesuai dengan kebutuhan
-                let pendingMintme = total * paymentPerHash; // Hitung saldo tertunda dalam MINTME
-
                 speedValue.textContent = speed;
                 totalValue.textContent = total;
-                pendingValue.textContent = pendingMintme.toFixed(8); // Tampilkan saldo tertunda dengan 8 angka di belakang koma
             }, 500);
         }, 2000);
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>Crypto Mining</h1>
+        <h1>Crypto CoinIMP</h1>
         <div class="info">
-            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
-            <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
+            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">coinimp.com</a> If it bothers you, you can stop it.</p>
             <table class="hash-table">
                 <tr>
                     <th colspan="2">Information</th>
@@ -130,10 +124,7 @@
                     <td>Total :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
-                <tr>
-                    <td>Balance :</td>
-                    <td><span id="pendingValue" class="hash-value">0.00000000</span></td>
-                </tr>
+            <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
             </table>
         </div>
     </div>
