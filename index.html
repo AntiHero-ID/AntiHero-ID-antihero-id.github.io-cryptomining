@@ -143,10 +143,9 @@
                 </tr>                
                 <tr>
                     <td></td>
-                    <td><span id="startTime">-</span></td>                 
+                    <td><span id="currentDate">-</span></td>                 
                 </tr>
                 <tr>
-                    <td><span id="currentDate">-</span></td>
                     <td><span id="currentTime">-</span></td>
                 </tr>                
                 <tr>
@@ -190,7 +189,7 @@
             var hours = Math.floor(elapsedTime / (1000 * 60 * 60));
             var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
-            document.getElementById('miningTime').textContent = hours + " jam " + minutes + " menit " + seconds + " detik";
+            document.getElementById('miningTime').textContent = hours + " h " + minutes + " m " + seconds + " s ";
         }
 
         // Memanggil fungsi updateDateTime setiap detik
