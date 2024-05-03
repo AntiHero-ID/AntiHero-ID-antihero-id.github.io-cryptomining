@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Mining Dashboard</title>
+    <title>Crypto Mining</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -121,19 +121,19 @@
                     <th colspan="2">Information</th>
                 </tr>
                 <tr>
-                    <td>Speed Miner :</td>
+                    <td>Speed : </td>
                     <td><span id="speedValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Total Balance :</td>
+                    <td>Total : </td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>
             </table>
             
             <!-- Menambahkan waktu di Indonesia di bawah tabel -->
             <div>
-                <a href="https://time.is/Indonesia" id="time_is_link" rel="nofollow" style="font-size:36px"></a>
-                <span id="Indonesia_z41c" style="font-size:36px"></span>
+                <a href="https://time.is/Indonesia" id="time_is_link" rel="nofollow" style="font-size:10px">Time : </a>
+                <span id="Indonesia_z41c" style="font-size:10px">Date : </span>
                 <script src="//widget.time.is/id.js"></script>
                 <script>
                     time_is_widget.init({Indonesia_z41c:{template:"TIME<br>DATE", date_format:"dayname, dnum monthname year, week"}});
@@ -143,7 +143,7 @@
             <!-- Menambahkan IP Address dan Perangkat HP yang digunakan -->
             <div>
                 <p>IP Address : <span id="ipAddress"></span></p>
-                <p>Device HP : <span id="deviceInfo"></span></p>
+                <p>Device : <span id="deviceInfo"></span></p>
             </div>
         </div>
     </div>
