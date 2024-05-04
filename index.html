@@ -28,16 +28,26 @@
         }
 
         .start-button, .stop-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .start-button:hover, .stop-button:hover {
+            background-color: #0056b3;
+        }
+
+        .button-container {
             position: absolute;
-            bottom: 10px;
-        }
-
-        .start-button {
-            left: 10px;
-        }
-
-        .stop-button {
-            right: 10px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 250px;
         }
 
         h1 {
