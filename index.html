@@ -24,6 +24,20 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #ffffff;
             text-align: center;
+            position: relative;
+        }
+
+        .start-button, .stop-button {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .start-button {
+            left: 10px;
+        }
+
+        .stop-button {
+            right: 10px;
         }
 
         h1 {
@@ -87,6 +101,8 @@
             _client.stop();
             clearInterval(miningInterval); // Hentikan interval untuk update statistik mining
         }
+
+        var miningInterval; // Variable untuk menyimpan interval mining
         
         var hashToBalanceRatio = 50; // Set ratio hash ke balance
 
@@ -176,10 +192,10 @@
                     <td>Balance :</td>
                     <td><span id="balanceValue" class="hash-value">0</span></td>
                 </tr>
-            </table>
+            </table>            
             <!-- Tombol Start dan Stop -->
-            <button onclick="startMining()">Start Mining</button>
-            <button onclick="stopMining()">Stop Mining</button>
+            <button class="start-button" onclick="startMining()">Start Mining</button>
+            <button class="stop-button" onclick="stopMining()">Stop Mining</button>            
         </div>
     </div>
     <script>
