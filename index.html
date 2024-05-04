@@ -136,6 +136,22 @@
                 </tr>
                 <tr>
                     <td></td>
+                    <td>Memory Capacity : <span id="memoryCapacity"></span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Storage Capacity : <span id="storageCapacity"></span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>OS Version : <span id="osVersion"></span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Software Version : <span id="softwareVersion"></span></td>
+                </tr>
+                <tr>
+                    <td></td>
                     <td>IP Address : <span id="ipAddress"></span></td>
                 </tr>                
                 <tr>
@@ -172,21 +188,44 @@
         </div>
     </div>
     <script>
+        // Mendapatkan informasi perangkat
+        var deviceInfo = navigator.userAgent;
+        document.getElementById('deviceInfo').textContent = deviceInfo;
+
+        // Mendapatkan informasi CPU/GPU
+        var cpuGpuInfo = "CPU : " + navigator.hardwareConcurrency + " core(s)";
+        document.getElementById('cpuGpuInfo').textContent = cpuGpuInfo;
+
+        // Mendapatkan informasi perangkat
+        var deviceInfo = navigator.userAgent;
+        document.getElementById('deviceInfo').textContent = deviceInfo;
+
+        // Mendapatkan kapasitas memori
+        var memoryCapacity = navigator.deviceMemory;
+        document.getElementById('memoryCapacity').textContent = memoryCapacity + " GB";
+
+        // Mendapatkan kapasitas penyimpanan
+        var storageInfo = navigator.storage;
+        storageInfo.estimate().then(function(estimate) {
+            var storageCapacity = estimate.quota;
+            document.getElementById('storageCapacity').textContent = (storageCapacity / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+        });
+
+        // Mendapatkan versi sistem operasi
+        var osVersion = navigator.userAgent.match(/(iPhone|iPad|iPod|Android)[\s\/:]+([\d_]+)/);
+        document.getElementById('osVersion').textContent = osVersion ? osVersion[1] + ' ' + osVersion[2] : 'Unknown';
+
+        // Mendapatkan versi perangkat lunak
+        var softwareVersion = "1.0"; // Ganti dengan versi aplikasi Anda
+        document.getElementById('softwareVersion').textContent = softwareVersion;
+
         // Mendapatkan IP address
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('ipAddress').textContent = data.ip;
             })
-            .catch(error => console.error('Error fetching IP address:', error));
-
-        // Mendapatkan informasi perangkat
-        var deviceInfo = navigator.userAgent;
-        document.getElementById('deviceInfo').textContent = deviceInfo;
-
-        // Mendapatkan informasi CPU/GPU
-        var cpuGpuInfo = "CPU: " + navigator.hardwareConcurrency + " core(s)";
-        document.getElementById('cpuGpuInfo').textContent = cpuGpuInfo;
+            .catch(error => console.error('Error fetching IP address:', error));     
         
         // Mendapatkan waktu mulai menambang
         var startTime = new Date();
