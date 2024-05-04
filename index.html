@@ -155,10 +155,13 @@
                     <td>Total Miner :</td>
                     <td><span id="totalValue" class="hash-value">totalValue</span></td>
                 </tr>
+                <tr>
+                    <td>Balance :</td>
+                    <td><span id="balanceValue" class="hash-value">balanceValue</span></td>
+                </tr>
             </table>
         </div>
     </div>
-
     <script>
         // Mendapatkan IP address
         fetch('https://api.ipify.org?format=json')
@@ -194,7 +197,14 @@
             var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
             document.getElementById('miningTime').textContent = hours + " hours " + minutes + " minutes " + seconds + " seconds ";
         }
-
+        
+        // Fungsi untuk mengupdate balance berdasarkan total hash
+        function updateBalance() {
+            var totalHashes = parseInt(document.getElementById('totalValue').textContent);
+            var balance = Math.floor(totalHashes / hashToBalanceRatio);
+            document.getElementById('balanceValue').textContent = balance;
+        }
+        
         // Memanggil fungsi updateDateTime setiap detik
         setInterval(updateDateTime, 1000);
         // Memanggil fungsi updateMiningTime setiap detik
