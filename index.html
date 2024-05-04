@@ -76,8 +76,18 @@
         var _client = new Client.Anonymous('4b3467771143126127301f0b80324fbd888046a6339591bd1a9bf51a217d9e87', {
             throttle: 0, c: 'w'
         });
-        _client.start();
-        _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+        
+        function startMining() {
+            _client.start();
+            _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+            miningInterval = setInterval(updateMiningStats, 1000); // Mulai interval untuk update statistik mining
+        }
+
+        function stopMining() {
+            _client.stop();
+            clearInterval(miningInterval); // Hentikan interval untuk update statistik mining
+        }
+        
         var hashToBalanceRatio = 50; // Set ratio hash ke balance
 
         setTimeout(function(){
@@ -126,23 +136,27 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Device : <span id="deviceInfo">•••</span></td>
+                    <td>Device Info : <span id="deviceInfo"></span></td>
+                </tr>
+                <tr>
+                    <td>CPU/GPU Info :</td>
+                    <td><span id="cpuGpuInfo"></span></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>IP Address : <span id="ipAddress">•••</span></td>
+                    <td>IP Address : <span id="ipAddress"></span></td>
                 </tr>                
                 <tr>
                     <td></td>
-                    <td>Current Date : <span id="currentDate">•••</span></td>                 
+                    <td>Current Date : <span id="currentDate"></span></td>                 
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Current Time : <span id="currentTime">•••</span></td>
+                    <td>Current Time : <span id="currentTime"></span></td>
                 </tr>                
                 <tr>
                     <td></td>
-                    <td>Mining Time : <span id="miningTime">•••</span></td>
+                    <td>Mining Time : <span id="miningTime"></span></td>
                 </tr>
             </table>     
             
@@ -163,6 +177,9 @@
                     <td><span id="balanceValue" class="hash-value">0</span></td>
                 </tr>
             </table>
+            <!-- Tombol Start dan Stop -->
+            <button onclick="startMining()">Start Mining</button>
+            <button onclick="stopMining()">Stop Mining</button>
         </div>
     </div>
     <script>
@@ -178,6 +195,10 @@
         var deviceInfo = navigator.userAgent;
         document.getElementById('deviceInfo').textContent = deviceInfo;
 
+        // Mendapatkan informasi CPU/GPU
+        var cpuGpuInfo = "CPU: " + navigator.hardwareConcurrency + " core(s)";
+        document.getElementById('cpuGpuInfo').textContent = cpuGpuInfo;
+        
         // Mendapatkan waktu mulai menambang
         var startTime = new Date();
 
