@@ -24,7 +24,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             background-color: #ffffff;
             text-align: center;
-            position: relative;
         }
 
         .start-button, .stop-button {
@@ -86,7 +85,6 @@
             _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
             miningInterval = setInterval(updateMiningStats, 1000); // Mulai interval untuk update statistik mining
         }
-        var miningInterval; // Variable untuk menyimpan interval mining
         
         var hashToBalanceRatio = 50; // Set ratio hash ke balance
 
