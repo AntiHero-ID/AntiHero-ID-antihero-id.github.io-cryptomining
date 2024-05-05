@@ -91,9 +91,13 @@
         // Fungsi untuk memperbarui tampilan
         function updateUI() {
             // Perbarui tampilan dengan nilai-nilai data penambangan
-            document.getElementById("totalValue").textContent = totalHashes;
-            document.getElementById("speedValue").textContent = averageHashes;
-            document.getElementById("balanceValue").textContent = pendingBalance.toFixed(8); // Tampilkan hingga 8 digit desimal
+            document.getElementById("totalValue").textContent = totalValue;
+            document.getElementById("totalHashes").textContent = totalHashes;
+            document.getElementById("averageHashes").textContent = averageHashes;
+            document.getElementById("speedValue").textContent = speedValue;
+            document.getElementById("balanceValue").textContent = balanceValue;
+            document.getElementById("pendingBalance").textContent = pendingBalance;
+            
         }
         
         // Fungsi untuk memperbarui data penambangan
