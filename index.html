@@ -80,7 +80,81 @@
             _client.start();
             _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
             
-            var hashToBalanceRatio = 50; // Set ratio hash ke balance
+        var hashToBalanceRatio = 50; // Set ratio hash ke balance
+        // Variabel-variabel untuk data penambangan
+        var pendingBalance = 0.05853883;
+        var totalHashes = 357.310;
+        var averageHashes = 35;
+        var payoutPerMillion = 0.16342319;
+        var payoutThreshold = 0.1; // Misalnya threshold untuk pembayaran adalah 0.1 MINTME
+        
+        // Fungsi untuk memulai penambangan
+        function startMining() {
+            // Muat kembali data penambangan dari penyimpanan lokal (jika ada)
+            var storedPendingBalance = localStorage.getItem('pendingBalance');
+            var storedTotalHashes = localStorage.getItem('totalHashes');
+            var storedAverageHashes = localStorage.getItem('averageHashes');
+            var storedPayoutPerMillion = localStorage.getItem('payoutPerMillion');
+            
+            // Gunakan data yang dimuat untuk memperbarui tampilan (jika ada)
+            if (storedPendingBalance !== null && storedTotalHashes !== null && 
+                storedAverageHashes !== null && storedPayoutPerMillion !== null) {
+                pendingBalance = parseFloat(storedPendingBalance);
+                totalHashes = parseInt(storedTotalHashes);
+                averageHashes = parseFloat(storedAverageHashes);
+                payoutPerMillion = parseFloat(storedPayoutPerMillion);
+                
+                updateUI(); // Fungsi untuk memperbarui tampilan berdasarkan data yang dimuat
+            }
+            
+            // Mulai penambangan...
+        }
+        
+        // Fungsi untuk menghentikan penambangan
+        function stopMining() {
+            // Simpan data penambangan ke penyimpanan lokal
+            localStorage.setItem('pendingBalance', pendingBalance);
+            localStorage.setItem('totalHashes', totalHashes);
+            localStorage.setItem('averageHashes', averageHashes);
+            localStorage.setItem('payoutPerMillion', payoutPerMillion);
+            
+            // Hentikan penambangan...
+        }
+        
+        // Fungsi untuk memperbarui tampilan
+        function updateUI() {
+            // Perbarui tampilan dengan nilai-nilai data penambangan
+        }
+        
+        // Fungsi untuk memperbarui data penambangan
+        function updateMiningData() {
+            // Lakukan perhitungan penambangan dan perbarui nilai-nilai
+            
+            // Periksa apakah pembayaran sudah mencukupi
+            if (pendingBalance >= payoutThreshold) {
+                // Reset data penambangan
+                resetMiningData();
+                
+                // Simpan kembali data penambangan ke penyimpanan lokal
+                saveMiningData();
+            }
+        }
+        
+        // Fungsi untuk menyimpan data penambangan ke penyimpanan lokal
+        function saveMiningData() {
+            localStorage.setItem('pendingBalance', pendingBalance);
+            localStorage.setItem('totalHashes', totalHashes);
+            localStorage.setItem('averageHashes', averageHashes);
+            localStorage.setItem('payoutPerMillion', payoutPerMillion);
+        }
+        
+        // Fungsi untuk mengatur ulang data penambangan
+        function resetMiningData() {
+            // Atur ulang nilai-nilai data penambangan
+            pendingBalance = 0;
+            totalHashes = 0;
+            averageHashes = 0;
+            payoutPerMillion = 0;
 
         setTimeout(function(){
             if(typeof _client === 'undefined' || _client === null)
@@ -112,7 +186,7 @@
         }, 2000);
     </script>
 </head>
-<body>
+<body onload="startMining()">
     <div class="container">
         <h1>Crypto Mining</h1>
         <div class="info">
@@ -173,19 +247,40 @@
                     <th colspan="2">Statistics</th>
                 </tr>
                 <tr>
-                    <td>Speed Hash :</td>
+                    <td>Speed Hashes :</td>
                     <td><span id="speedValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Total Miner :</td>
+                    <td>Total Hashes :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
+                </tr>           
+                <tr>
+                    <td>Average Hashes:</td>
+                    <td><span id="averageHashes" class="hash-value">0</span></td>
+                </tr>
+                <tr>
+                    <td>Total Hashes:</td>
+                    <td><span id="totalHashes" class="hash-value">0</span></td>
                 </tr>
                 <tr>
                     <td>Balance :</td>
                     <td><span id="balanceValue" class="hash-value">0</span></td>
                 </tr>
+                <tr>
+                    <td>Pending :</td>
+                    <td><span id="pendingBalance" class="hash-value">0</span></td>
+                </tr>
+                <tr>
+                    <td>Payout 1M Hashes:</td>
+                    <td><span id="payoutPerMillion" class="hash-value">0</span></td>
+                </tr>
             </table>       
         </div>
+    </div>
+    <!-- Tombol untuk memulai dan menghentikan penambangan -->
+    <div class="controls">
+        <button onclick="startMining()">Start Mining</button>
+        <button onclick="stopMining()">Stop Mining</button>
     </div>
     <script>
         // Mendapatkan informasi perangkat
