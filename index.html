@@ -81,41 +81,6 @@
             _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
             
         var hashToBalanceRatio = 50; // Set ratio hash ke balance
-        // Variabel-variabel untuk data penambangan
-        var pendingBalance = 0;
-        var totalHashes = 0;
-        var averageHashes = 0;
-        var payoutPerMillion = 0;
-        var payoutThreshold = 0.16342319; // Misalnya threshold untuk pembayaran adalah 0.1 MINTME
-        
-        // Fungsi untuk memperbarui tampilan
-        function updateUI() {
-            // Perbarui tampilan dengan nilai-nilai data penambangan
-            document.getElementById("totalValue").textContent = totalValue;
-            document.getElementById("totalHashes").textContent = totalHashes;
-            document.getElementById("averageHashes").textContent = averageHashes;
-            document.getElementById("speedValue").textContent = speedValue;
-            document.getElementById("balanceValue").textContent = balanceValue;
-            document.getElementById("pendingBalance").textContent = pendingBalance;
-            
-        }
-        
-        // Fungsi untuk memperbarui data penambangan
-        function updateMiningData() {
-            // Lakukan perhitungan penambangan dan perbarui nilai-nilai
-            totalHashes += Math.floor(Math.random() * 100); // Contoh: Total hashes bertambah secara acak
-            averageHashes = totalHashes / 10; // Contoh: Rata-rata hash per detik
-            pendingBalance += 0.00000001; // Contoh: Pending balance bertambah secara acak
-            
-            // Perbarui tampilan setelah memperbarui data penambangan
-            updateUI();
-        }
-        
-        // Panggil fungsi untuk memperbarui tampilan saat halaman dimuat
-        window.onload = function() {
-            // Panggil fungsi updateMiningData() setiap detik
-            setInterval(updateMiningData, 1000);
-        };
                 
         setTimeout(function(){
             if(typeof _client === 'undefined' || _client === null)
@@ -208,32 +173,16 @@
                     <th colspan="2">Statistics</th>
                 </tr>
                 <tr>
-                    <td>Speed Hashes :</td>
+                    <td>Speed :</td>
                     <td><span id="speedValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Total Value :</td>
+                    <td>Total :</td>
                     <td><span id="totalValue" class="hash-value">0</span></td>
                 </tr>           
                 <tr>
-                    <td>Average Hashes:</td>
-                    <td><span id="averageHashes" class="hash-value">0</span></td>
-                </tr>
-                <tr>
-                    <td>Total Hashes:</td>
-                    <td><span id="totalHashes" class="hash-value">0</span></td>
-                </tr>
-                <tr>
                     <td>Balance :</td>
                     <td><span id="balanceValue" class="hash-value">0</span></td>
-                </tr>
-                <tr>
-                    <td>Pending :</td>
-                    <td><span id="pendingBalance" class="hash-value">0</span></td>
-                </tr>
-                <tr>
-                    <td>Payout :</td>
-                    <td><span id="payoutPerMillion" class="hash-value">0</span></td>
                 </tr>
             </table>       
         </div>
