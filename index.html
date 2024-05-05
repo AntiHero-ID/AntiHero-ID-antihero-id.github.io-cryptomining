@@ -117,10 +117,8 @@
         <h1>Crypto Mining</h1>
         <div class="info">
                         
-            <p>This site is running <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">CoinIMP</a> miner from JavaScript code and <a href="https://www.mintme.com/">MintMe</a> that can be exchanged.</p>
-            
-            <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
-  
+            <p>This site is running <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">CoinIMP</a> miner from JavaScript code and <a href="https://www.mintme.com/">MintMe</a> that can be exchanged. If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
+                        
             <table class="hash-table">
                 <tr>
                     <th colspan="2">Information</th>
@@ -155,7 +153,7 @@
                 </tr>                
                 <tr>
                     <td></td>
-                    <td>Current Date : <span id="currentDate"></span><span id="currentTime""></span></td>                   
+                    <td>DateTime: <span id="currentDateTime"></span></td>                   
                 </tr>
                 <tr>
                     <td></td>
@@ -243,6 +241,14 @@
             var minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
             document.getElementById('miningTime').textContent = hours + " hours " + minutes + " minutes " + seconds + " seconds ";
+        }
+
+        // Fungsi untuk mengupdate waktu dan tanggal secara real-time
+        function updateDateTime() {
+            var now = new Date();
+            var timeString = now.getHours().toString().padStart(2, '0') + ":" + now.getMinutes().toString().padStart(2, '0') + ":" + now.getSeconds().toString().padStart(2, '0');
+            var dateString = now.toLocaleDateString();
+            document.getElementById('currentDateTime').textContent = dateString + " " + timeString;
         }
         
         // Fungsi untuk mengupdate balance berdasarkan total hash
