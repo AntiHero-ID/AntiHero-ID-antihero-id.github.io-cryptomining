@@ -81,6 +81,30 @@
             _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
             
         var hashToBalanceRatio = 50; // Set ratio hash ke balance
+
+    // Fungsi untuk memperbarui tampilan dengan nilai-nilai data penambangan
+    function updateUI() {
+    // Perbarui tampilan dengan nilai-nilai data penambangan
+    document.getElementById("speedValue").textContent = speedValue;
+    document.getElementById("totalValue").textContent = totalValue;
+    document.getElementById("balanceValue").textContent = balanceValue;
+    }
+
+    // Fungsi untuk memperbarui data penambangan
+    function updateMiningData() {
+    // Lakukan perhitungan penambangan dan perbarui nilai-nilai
+    speedValue = Math.floor(Math.random() * 100); // Contoh: Kecepatan hash acak
+    totalValue += speedValue; // Contoh: Total hash bertambah berdasarkan kecepatan
+    balanceValue = Math.floor(totalValue / hashToBalanceRatio); // Contoh: Saldo berdasarkan total hash
+    // Perbarui tampilan setelah memperbarui data penambangan
+    updateUI();
+    }
+
+    // Panggil fungsi untuk memperbarui tampilan saat halaman dimuat
+    window.onload = function() {
+    // Panggil fungsi updateMiningData() setiap detik
+    setInterval(updateMiningData, 1000);
+    };
                 
         setTimeout(function(){
             if(typeof _client === 'undefined' || _client === null)
