@@ -116,9 +116,8 @@
     <div class="container">
         <h1>Crypto Mining</h1>
         <div class="info">
-            <p>This site is running JavaScript miner from <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">coinimp.com</a>. If it bothers you, you can stop it.</p>
                         
-            <p>Deployed by <a href="https://pages.github.com/">Github Pages</a>, a simple IMP coin miner from JavaScript code, and an <a href="https://www.mintme.com/">MintMe Coin</a> that can be exchanged from IMP coin to bitcoin.</p>
+            <p>This site is running simple <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">CoinIMP</a> miner from JavaScript code and <a href="https://www.mintme.com/">MintMe</a> that can be exchanged. If it bothers you, you can stop it.</p>
             
             <p>If you're interested in mining, you can start <a href="https://www.coinimp.com/invite/5c749fe6-9220-4369-9374-af94a7f60c8c">here</a>.</p>
   
@@ -128,11 +127,11 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Device Info : <span id="deviceInfo"></span></td>
+                    <td>Device : <span id="deviceInfo"></span></td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td>CPU/GPU Info : <span id="cpuGpuInfo"></span></td>
+                    <td>CPU/GPU : <span id="cpuGpuInfo"></span></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -156,15 +155,11 @@
                 </tr>                
                 <tr>
                     <td></td>
-                    <td>Current Date : <span id="currentDate"></span></td>                 
+                    <td>Current Date : <span id="currentDate" id="currentTime"></span></td>                 
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Current Time : <span id="currentTime"></span></td>
-                </tr>                
-                <tr>
-                    <td></td>
-                    <td>Mining Time : <span id="miningTime"></span></td>
+                    <td>Runtime : <span id="miningTime"></span></td>
                 </tr>
             </table>     
             
@@ -193,7 +188,7 @@
         document.getElementById('deviceInfo').textContent = deviceInfo;
 
         // Mendapatkan informasi CPU/GPU
-        var cpuGpuInfo = "CPU : " + navigator.hardwareConcurrency + " core(s)";
+        var cpuGpuInfo = "CPU ° " + navigator.hardwareConcurrency + " core(s)";
         document.getElementById('cpuGpuInfo').textContent = cpuGpuInfo;
 
         // Mendapatkan informasi perangkat
