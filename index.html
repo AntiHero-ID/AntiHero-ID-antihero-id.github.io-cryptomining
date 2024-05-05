@@ -88,18 +88,6 @@
         var payoutPerMillion = 0;
         var payoutThreshold = 0.16342319; // Misalnya threshold untuk pembayaran adalah 0.1 MINTME
         
-        // Fungsi untuk memulai penambangan
-        function startMining() {
-            // Mulai penambangan...
-            setInterval(updateMiningData, 1000); // Panggil fungsi updateMiningData() setiap detik
-        }
-        
-        // Fungsi untuk menghentikan penambangan
-        function stopMining() {
-            // Hentikan penambangan...
-            clearInterval(updateMiningData); // Hentikan pemanggilan fungsi updateMiningData()
-        }
-        
         // Fungsi untuk memperbarui tampilan
         function updateUI() {
             // Perbarui tampilan dengan nilai-nilai data penambangan
@@ -117,26 +105,12 @@
             
             // Perbarui tampilan setelah memperbarui data penambangan
             updateUI();
-            
-            // Periksa apakah pembayaran sudah mencukupi
-            if (pendingBalance >= payoutThreshold) {
-                // Reset data penambangan
-                resetMiningData();
-            }
         }
         
-        // Fungsi untuk mengatur ulang data penambangan
-        function resetMiningData() {
-            // Atur ulang nilai-nilai data penambangan
-            pendingBalance = 0;
-            totalHashes = 0;
-            averageHashes = 0;
-            payoutPerMillion = 0;
-        }
-        
-        // Panggil fungsi untuk memulai penambangan saat halaman dimuat
+        // Panggil fungsi untuk memperbarui tampilan saat halaman dimuat
         window.onload = function() {
-            startMining();
+            // Panggil fungsi updateMiningData() setiap detik
+            setInterval(updateMiningData, 1000);
         };
                 
         setTimeout(function(){
