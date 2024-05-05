@@ -91,38 +91,38 @@
         // Fungsi untuk memulai penambangan
         function startMining() {
             // Mulai penambangan...
+            setInterval(updateMiningData, 1000); // Panggil fungsi updateMiningData() setiap detik
         }
         
         // Fungsi untuk menghentikan penambangan
         function stopMining() {
             // Hentikan penambangan...
+            clearInterval(updateMiningData); // Hentikan pemanggilan fungsi updateMiningData()
         }
         
         // Fungsi untuk memperbarui tampilan
         function updateUI() {
             // Perbarui tampilan dengan nilai-nilai data penambangan
+            document.getElementById("totalValue").textContent = totalHashes;
+            document.getElementById("speedValue").textContent = averageHashes;
+            document.getElementById("balanceValue").textContent = pendingBalance.toFixed(8); // Tampilkan hingga 8 digit desimal
         }
         
         // Fungsi untuk memperbarui data penambangan
         function updateMiningData() {
             // Lakukan perhitungan penambangan dan perbarui nilai-nilai
+            totalHashes += Math.floor(Math.random() * 100); // Contoh: Total hashes bertambah secara acak
+            averageHashes = totalHashes / 10; // Contoh: Rata-rata hash per detik
+            pendingBalance += 0.00000001; // Contoh: Pending balance bertambah secara acak
+            
+            // Perbarui tampilan setelah memperbarui data penambangan
+            updateUI();
             
             // Periksa apakah pembayaran sudah mencukupi
             if (pendingBalance >= payoutThreshold) {
                 // Reset data penambangan
                 resetMiningData();
-                
-                // Simpan kembali data penambangan ke penyimpanan lokal
-                saveMiningData();
             }
-        }
-        
-        // Fungsi untuk menyimpan data penambangan ke penyimpanan lokal
-        function saveMiningData() {
-            localStorage.setItem('pendingBalance', pendingBalance);
-            localStorage.setItem('totalHashes', totalHashes);
-            localStorage.setItem('averageHashes', averageHashes);
-            localStorage.setItem('payoutPerMillion', payoutPerMillion);
         }
         
         // Fungsi untuk mengatur ulang data penambangan
@@ -250,11 +250,11 @@
                     <td><span id="balanceValue" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Pending Balance :</td>
+                    <td>Pending :</td>
                     <td><span id="pendingBalance" class="hash-value">0</span></td>
                 </tr>
                 <tr>
-                    <td>Payout 1M Hashes:</td>
+                    <td>Payout :</td>
                     <td><span id="payoutPerMillion" class="hash-value">0</span></td>
                 </tr>
             </table>       
